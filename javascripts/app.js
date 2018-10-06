@@ -3,7 +3,8 @@
 var rover = {
 	direction: "N",
 	x: 0,
-	y: 0
+	y: 0,
+	travelLog: [ ]
 }
 // ======================
 function turnLeft(rover){
@@ -29,6 +30,8 @@ function turnLeft(rover){
 			rover.direction = "W"
 	}
 	console.log(`The rover is now facing: ${rover.direction}`);
+
+
 
 }
 
@@ -63,6 +66,11 @@ function turnRight(rover){
 
 function moveForward(rover){
   console.log("moveForward was called")
+
+var oldCoordinates = {
+	x: rover.x, 
+	y: rover.y
+}
   switch (rover.direction) {
   		case "N":
   			rover.y --
@@ -84,7 +92,10 @@ function moveForward(rover){
   			rover.y --
 
   }
-   console.log(`The new position is: [${rover.x} , ${rover.y}]`);
+
+   console.log(`The new position is: [${rover.x} , ${rover.y}]`); 
+
+   rover.travelLog.push(oldCoordinates);
 }
 
  
@@ -115,6 +126,9 @@ function receiveCommands (commands) {
 }
 
 receiveCommands(commands);
+
+
+console.log(rover.travelLog);
 
 
 

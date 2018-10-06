@@ -88,16 +88,45 @@ function moveForward(rover){
 }
 
  
- 
+var commands = "rffrfflfrff"; 
 
-turnLeft(rover);
-moveForward(rover);
-turnLeft(rover);
-moveForward(rover);
-turnLeft(rover);
-moveForward(rover);
-turnLeft(rover);
-moveForward(rover);
+
+
+
+function receiveCommands (commands) {
+	var arrayCommands = commands.split('');
+
+		
+	for (var i = 0; i < arrayCommands.length; i++){
+
+
+		if (arrayCommands[i] === 'f') {
+		moveForward(rover)
+	} else if (arrayCommands[i] === 'r') {
+		turnRight(rover)
+	} else {
+		turnLeft(rover)
+	}
+		console.log(arrayCommands[i])
+	}
+
+
+
+}
+
+receiveCommands(commands);
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

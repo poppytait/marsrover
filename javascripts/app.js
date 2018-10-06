@@ -1,7 +1,9 @@
 // Rover Object Goes Here
 // ======================
 var rover = {
-	direction: "N"
+	direction: "N",
+	x: 0,
+	y: 0
 }
 // ======================
 function turnLeft(rover){
@@ -26,11 +28,10 @@ function turnLeft(rover){
 		default:
 			rover.direction = "W"
 	}
+	console.log(`The rover is now facing: ${rover.direction}`);
 
 }
 
-turnLeft(rover);
-console.log(`The rover is now facing: ${rover.direction}`);
 
 
 function turnRight(rover){
@@ -55,11 +56,48 @@ function turnRight(rover){
 		default:
 			rover.direction = "E"
 	}
+	console.log(`The rover is now facing: ${rover.direction}`);
 }
 
-turnRight(rover);
-console.log(`The rover is now facing: ${rover.direction}`);
+
 
 function moveForward(rover){
   console.log("moveForward was called")
+  switch (rover.direction) {
+  		case "N":
+  			rover.y --
+  			break;
+
+  		case "W":
+  			rover.x --
+  			break;
+
+  		case "S":
+  			rover.y ++
+  			break;
+
+  		case "E":
+  			rover.x ++
+  			break;
+
+  		default:
+  			rover.y --
+
+  }
+   console.log(`The new position is: [${rover.x} , ${rover.y}]`);
 }
+
+ 
+ 
+
+turnLeft(rover);
+moveForward(rover);
+turnLeft(rover);
+moveForward(rover);
+turnLeft(rover);
+moveForward(rover);
+turnLeft(rover);
+moveForward(rover);
+
+
+

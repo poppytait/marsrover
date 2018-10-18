@@ -4,11 +4,11 @@ var rover = {
 	direction: "N",
 	x: 0,
 	y: 0,
-	travelLog: [ ]
+	travelLog: []
 }
 // ======================
-function turnLeft(rover){
-  console.log("turnLeft was called!");
+function turnLeft(rover) {
+	console.log("turnLeft was called!");
 	switch (rover.direction) {
 		case "N":
 			rover.direction = "W"
@@ -30,16 +30,11 @@ function turnLeft(rover){
 			rover.direction = "W"
 	}
 	console.log(`The rover is now facing: ${rover.direction}`);
-
-
-
 }
 
-
-
-function turnRight(rover){
-  console.log("turnRight was called!");
-  switch (rover.direction) {
+function turnRight(rover) {
+	console.log("turnRight was called!");
+	switch (rover.direction) {
 		case "N":
 			rover.direction = "E"
 			break;
@@ -62,136 +57,143 @@ function turnRight(rover){
 	console.log(`The rover is now facing: ${rover.direction}`);
 }
 
+function moveForward(rover) {
+	console.log("moveForward was called")
 
-
-function moveForward(rover){
-  console.log("moveForward was called")
-
-var oldCoordinates = {
-	x: rover.x, 
-	y: rover.y
-}
-  switch (rover.direction) {
-		  case "N":
-		  if ( rover.y === 0 ) {
-			console.log('You can\'t go off the grid')
-		  } else {
-			  rover.y --
-		  }
-  			break;
-
-  		case "W":
-  			if ( rover.x === 0 ) {
-				  console.log('You can\'t go off the grid')
-			  } else {   
-				rover.x --
-			  }
-  			break;
-
-		  case "S":
-  			if ( rover.y === 10 ) {
-				  console.log('You can\'t go off the grid')
-			  } else {
-				rover.y ++
-			  }
-  			break;
-
-		  case "E":
-		  if ( rover.x === 10) {
-			  console.log('You can\'t go off the grid')
-		  } else {
-			  rover.x ++
-		  }
-  			break;
-
-  		default:
-			  rover.y --
-			  
-
-
-  }
-
-   console.log(`The new position is: [${rover.x} , ${rover.y}]`); 
-
-   rover.travelLog.push(oldCoordinates);
-}
-
-function moveBackward(rover){
-	console.log("moveBackward was called")
-  
-  var oldCoordinates = {
-	  x: rover.x, 
-	  y: rover.y
-  }
+	var oldCoordinates = {
+		x: rover.x,
+		y: rover.y
+	}
 	switch (rover.direction) {
-			case "N":
-			if ( rover.y === 10 ) {
-			  console.log('You can\'t go off the grid')
-			} else {
-				rover.y ++
-			}
-				break;
-  
-			case "W":
-				if ( rover.x === 10 ) {
-					console.log('You can\'t go off the grid')
-				} else {   
-				  rover.x ++
-				}
-				break;
-  
-			case "S":
-				if ( rover.y === 0 ) {
-					console.log('You can\'t go off the grid')
-				} else {
-				  rover.y --
-				}
-				break;
-  
-			case "E":
-			if ( rover.x === 0) {
+		case "N":
+			if (rover.y === 0) {
 				console.log('You can\'t go off the grid')
 			} else {
-				rover.x --
+				rover.y--
 			}
-				break;
-  
+			break;
+
+		case "W":
+			if (rover.x === 0) {
+				console.log('You can\'t go off the grid')
+			} else {
+				rover.x--
+			}
+			break;
+
+		case "S":
+			if (rover.y === 10) {
+				console.log('You can\'t go off the grid')
+			} else {
+				rover.y++
+			}
+			break;
+
+		case "E":
+			if (rover.x === 10) {
+				console.log('You can\'t go off the grid')
+			} else {
+				rover.x++
+			}
+			break;
+
+		default:
+			rover.y--
+
+
+
 	}
-  
-	 console.log(`The new position is: [${rover.x} , ${rover.y}]`); 
-  
-	 rover.travelLog.push(oldCoordinates);
-  }
 
- 
-var commands = "rbbb"; 
+	console.log(`The new position is: [${rover.x} , ${rover.y}]`);
+
+	rover.travelLog.push(oldCoordinates);
+}
+
+function moveBackward(rover) {
+	console.log("moveBackward was called")
+
+	var oldCoordinates = {
+		x: rover.x,
+		y: rover.y
+	}
+	switch (rover.direction) {
+		case "N":
+			if (rover.y === 10) {
+				console.log('You can\'t go off the grid')
+			} else {
+				rover.y++
+			}
+			break;
+
+		case "W":
+			if (rover.x === 10) {
+				console.log('You can\'t go off the grid')
+			} else {
+				rover.x++
+			}
+			break;
+
+		case "S":
+			if (rover.y === 0) {
+				console.log('You can\'t go off the grid')
+			} else {
+				rover.y--
+			}
+			break;
+
+		case "E":
+			if (rover.x === 0) {
+				console.log('You can\'t go off the grid')
+			} else {
+				rover.x--
+			}
+			break;
+
+	}
+
+	console.log(`The new position is: [${rover.x} , ${rover.y}]`);
+
+	rover.travelLog.push(oldCoordinates);
+}
+
+
+var commands = "rbbbp";
 
 
 
 
 
-function receiveCommands (commands) {
+function receiveCommands(commands) {
 	var arrayCommands = commands.split('');
 
-		
-	for (var i = 0; i < arrayCommands.length; i++){
+
+	for (var i = 0; i < arrayCommands.length; i++) {
+
+		switch (arrayCommands[i]) {
+			case "f":
+				moveForward(rover)
+				break;
+			case "l":
+				turnLeft(rover)
+				break;
+			case "r":
+				turnRight(rover)
+				break;
+			case "b":
+				moveBackward(rover)
+				break;
+			default:
+				console.log('This move has not been recognised')
 
 
-		if (arrayCommands[i] === 'f') {
-		moveForward(rover)
-	} else if (arrayCommands[i] === 'r') {
-		turnRight(rover)
-	} else if (arrayCommands[i] === 'l') { 
-		turnLeft(rover)
-	} else {
-		moveBackward(rover)
-	}
+		}
+
 		console.log(arrayCommands[i])
 	}
-
-
-
 }
+
+
+
 
 receiveCommands(commands);
 

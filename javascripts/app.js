@@ -72,24 +72,42 @@ var oldCoordinates = {
 	y: rover.y
 }
   switch (rover.direction) {
-  		case "N":
-  			rover.y --
+		  case "N":
+		  if ( rover.y === 0 ) {
+			console.log('You can\'t go off the grid')
+		  } else {
+			  rover.y --
+		  }
   			break;
 
   		case "W":
-  			rover.x --
+  			if ( rover.x === 0 ) {
+				  console.log('You can\'t go off the grid')
+			  } else {   
+				rover.x --
+			  }
   			break;
 
-  		case "S":
-  			rover.y ++
+		  case "S":
+  			if ( rover.y === 10 ) {
+				  console.log('You can\'t go off the grid')
+			  } else {
+				rover.y ++
+			  }
   			break;
 
-  		case "E":
-  			rover.x ++
+		  case "E":
+		  if ( rover.x === 10) {
+			  console.log('You can\'t go off the grid')
+		  } else {
+			  rover.x ++
+		  }
   			break;
 
   		default:
-  			rover.y --
+			  rover.y --
+			  
+
 
   }
 
@@ -100,6 +118,8 @@ var oldCoordinates = {
 
  
 var commands = "rffrfflfrff"; 
+commands ='rffffffffffff';
+
 
 
 

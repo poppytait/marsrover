@@ -116,8 +116,55 @@ var oldCoordinates = {
    rover.travelLog.push(oldCoordinates);
 }
 
+function moveBackward(rover){
+	console.log("moveBackward was called")
+  
+  var oldCoordinates = {
+	  x: rover.x, 
+	  y: rover.y
+  }
+	switch (rover.direction) {
+			case "N":
+			if ( rover.y === 10 ) {
+			  console.log('You can\'t go off the grid')
+			} else {
+				rover.y ++
+			}
+				break;
+  
+			case "W":
+				if ( rover.x === 10 ) {
+					console.log('You can\'t go off the grid')
+				} else {   
+				  rover.x ++
+				}
+				break;
+  
+			case "S":
+				if ( rover.y === 0 ) {
+					console.log('You can\'t go off the grid')
+				} else {
+				  rover.y --
+				}
+				break;
+  
+			case "E":
+			if ( rover.x === 0) {
+				console.log('You can\'t go off the grid')
+			} else {
+				rover.x --
+			}
+				break;
+  
+	}
+  
+	 console.log(`The new position is: [${rover.x} , ${rover.y}]`); 
+  
+	 rover.travelLog.push(oldCoordinates);
+  }
+
  
-var commands = "rffrfflfrff"; 
+var commands = "rbbb"; 
 
 
 
@@ -134,8 +181,10 @@ function receiveCommands (commands) {
 		moveForward(rover)
 	} else if (arrayCommands[i] === 'r') {
 		turnRight(rover)
-	} else {
+	} else if (arrayCommands[i] === 'l') { 
 		turnLeft(rover)
+	} else {
+		moveBackward(rover)
 	}
 		console.log(arrayCommands[i])
 	}
